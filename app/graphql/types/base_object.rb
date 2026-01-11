@@ -5,5 +5,9 @@ module Types
     edge_type_class(Types::BaseEdge)
     connection_type_class(Types::BaseConnection)
     field_class Types::BaseField
+
+    def self.multiple_fields(*args)
+      args.each { |klass| klass.fields.values.each { |field| add_field field } }
+    end
   end
 end

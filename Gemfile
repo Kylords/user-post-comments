@@ -10,7 +10,9 @@ gem 'rails', '~> 5.2.5'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
+gem 'graphiql-rails', '1.7.0'
 gem 'puma', '~> 3.11'
+gem 'sprockets-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -45,4 +47,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "graphql", "~> 2.1"
+# gem 'graphql', '~> 2.1'
+
+# GraphQL
+gem 'graphql', '1.10.10'
+
+gem 'pry'
