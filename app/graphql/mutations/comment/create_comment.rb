@@ -18,6 +18,14 @@ module Mutations
           body: body
         )
 
+        count = ::Comment.where(post_id: post_id).count
+
+        ::PracticeSchema.subscriptions.trigger(
+          :comment_created,
+          { post_id: post_id },
+          comment_count: count
+        )
+
         { comment: comment }
       end
     end

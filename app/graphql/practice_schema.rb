@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 class PracticeSchema < GraphQL::Schema
+  use GraphQL::Subscriptions::ActionCableSubscriptions
+  use GraphQL::Batch
+
   mutation(Types::MutationType)
   query(Types::QueryType)
-  use GraphQL::Batch
+  subscription(Types::SubscriptionType)
 
   # For batch-loading (see https://graphql-ruby.org/dataloader/overview.html)
   # use GraphQL::Dataloader
