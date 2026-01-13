@@ -7,5 +7,16 @@ module Types
     field :title, String, null: false
     field :user, Types::User, null: false
     field :comments, [Types::Comment], null: true
+
+    field :latest_comment, Types::Comment, null: true
+    field :author, Types::User, null: true
+
+    def latest_comment
+      Util::MethodLoader::LatestCommentLoader.load(object.id)
+    end
+
+    def author
+      Util::MethodLoader::AuthorLoader.load(object.id)
+    end
   end
 end

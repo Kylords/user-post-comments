@@ -52,4 +52,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # GraphQL
 gem 'graphql', '1.10.10'
 
+gem 'graphql-batch'
 gem 'pry'
