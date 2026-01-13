@@ -9,7 +9,8 @@ module Types
     field :comments, [Types::Comment], null: true
 
     field :latest_comment, Types::Comment, null: true
-    field :author, Types::User, null: true
+    field :author, Types::User, null: false
+    field :comment_count, Int, null: false
 
     def latest_comment
       Util::MethodLoader::LatestCommentLoader.load(object.id)
@@ -17,6 +18,10 @@ module Types
 
     def author
       Util::MethodLoader::AuthorLoader.load(object.id)
+    end
+
+    def comment_count
+      Util::MethodLoader::CommentCountLoader.load(object.id)
     end
   end
 end
