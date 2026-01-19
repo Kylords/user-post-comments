@@ -6,6 +6,7 @@ module Types
     field :body, String, null: false
     field :title, String, null: false
     field :user, Types::User, null: false
+    field :user_id, ID, null: false
     field :comments, [Types::Comment], null: true
 
     field :latest_comment, Types::Comment, null: true

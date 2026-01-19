@@ -13,11 +13,11 @@ module Types
                        required: true
             end
 
-      field :user_posts,
-            [Types::Post],
+      field :search_users,
+            [Types::User],
             null: true do
-              argument :user_id,
-                       ID,
+              argument :query,
+                       String,
                        required: true
             end
 
@@ -30,8 +30,15 @@ module Types
           ::User.find(user_id)
         end
 
-        def user_posts(user_id:)
-          ::Post.where(user_id: user_id)
+        def search_users(query:)
+          return User.none if query.blank?
+
+          users = ::User.where(
+            'LOWER(name) LIKE :q OR LOWER(email) LIKE :q',
+            q: "%#{query.downcase}%"
+          ).distinct
+
+          users
         end
       end
     end
