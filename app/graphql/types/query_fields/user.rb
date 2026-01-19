@@ -38,7 +38,7 @@ module Types
             q: "%#{query.downcase}%"
           ).distinct
 
-          users
+          users.order(name: :asc)
         end
       end
     end

@@ -55,7 +55,7 @@ module Types
 
           posts.where(user_id: user_id) if user_id
 
-          posts
+          posts.order(created_at: :asc)
         end
       end
     end
