@@ -5,13 +5,15 @@ module Mutations
     class CreateComment < Mutations::BaseMutation
       graphql_name 'CreateComment'
 
-      argument :user_id, ID, required: true
       argument :post_id, ID, required: true
       argument :body, String, required: true
 
       field :comment, Types::Comment, null: false
 
-      def resolve(user_id:, post_id:, body:)
+      def resolve(post_id:, body:)
+        authenticate_user!
+
+        user_id = context[:current_user].id
         comment = ::Comment.create!(
           user_id: user_id,
           post_id: post_id,
@@ -20,6 +22,7 @@ module Mutations
 
         count = ::Comment.where(post_id: post_id).count
 
+        # require 'pry'; binding.pry
         ::PracticeSchema.subscriptions.trigger(
           :comment_created,
           { post_id: post_id },
